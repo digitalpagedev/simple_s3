@@ -29,6 +29,7 @@ class SimpleS3 {
     bool useTimeStamp: false,
     TimestampLocation timeStampLocation: TimestampLocation.prefix,
     bool debugLog: false,
+    String? customMimeType
   }) async {
     Map<String, dynamic> args = <String, dynamic>{};
     var result;
@@ -51,7 +52,10 @@ class SimpleS3 {
         fileName = originalFileName;
     }
 
-    contentType = mime(fileName)!;
+    String? contentMimeType = mime(fileName) ?? customMimeType;
+    if(contentMimeType == null)
+      throw Exception('there is no matched mime type');
+    contentType = contentMimeType;
 
     if (debugLog) {
       debugPrint('S3 Upload Started <-----------------');
