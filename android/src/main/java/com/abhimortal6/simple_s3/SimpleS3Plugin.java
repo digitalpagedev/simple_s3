@@ -56,11 +56,6 @@ public class SimpleS3Plugin implements FlutterPlugin, MethodCallHandler, EventCh
         clientConfiguration = new ClientConfiguration();
     }
 
-    public static void registerWith(PluginRegistry.Registrar registrar) {
-        SimpleS3Plugin simpleS3Plugins = new SimpleS3Plugin();
-        simpleS3Plugins.whenAttachedToEngine(registrar.context(), registrar.messenger());
-    }
-
     @Override
     public void onAttachedToEngine(@NonNull FlutterPluginBinding flutterPluginBinding) {
         whenAttachedToEngine(flutterPluginBinding.getApplicationContext(), flutterPluginBinding.getBinaryMessenger());
